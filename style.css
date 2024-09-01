@@ -1,0 +1,108 @@
+html[data-theme='dark']{
+	background-color: #111;
+}
+
+.theme-toggle {
+  --size: 2rem;
+  --icon-fill: hsl(210 10% 30%);
+  --icon-fill-hover: hsl(210 10% 15%);
+
+  background: none;
+  border: none;
+  padding: 0;
+
+  width: var(--size);
+  height: var(--size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  outline-offset: 5px;
+
+  [data-theme='dark'] & {
+    --icon-fill: hsl(210 10% 70%);
+    --icon-fill-hover: hsl(210 15% 90%);
+  }
+
+  @media (hover: none) {
+    --size: 300px;
+  }
+}
+
+.sun-and-moon {
+  inline-size: 100%;
+  block-size: 100%;
+  stroke-linecap: round;
+
+  & > :is(.sun, .sun-beams, .moon) {
+    transform-origin: center;
+  }
+
+  & > :is(.moon, .sun) {
+    fill: var(--icon-fill);
+
+    .theme-toggle:is(:hover, :focus-visible) & {
+      fill: var(--icon-fill-hover);
+    }
+  }
+
+  & > .sun-beams {
+    stroke: var(--icon-fill);
+    stroke-width: 2px;
+
+    .theme-toggle:is(:hover, :focus-visible) & {
+      stroke: var(--icon-fill-hover);
+    }
+  }
+
+  [data-theme='dark'] & {
+    & > .sun {
+      transform: scale(1.75);
+    }
+
+    & > .sun-beams {
+      opacity: 0;
+    }
+
+    & .moon circle {
+      transform: translateX(-7px);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sun {
+    transition: transform 0.5s cubic-bezier(0.5, 1.25, 0.75, 1.25);
+
+    [data-theme='dark'] .sun-and-moon > & {
+      transform: scale(1.75);
+      transition-timing-function: cubic-bezier(0.25, 0, 0.3, 1);
+      transition-duration: 0.25s;
+    }
+  }
+
+  .sun-beams {
+    transition: transform 0.5s cubic-bezier(0.5, 1.5, 0.75, 1.25),
+      opacity 0.5s cubic-bezier(0.25, 0, 0.3, 1);
+
+    [data-theme='dark'] .sun-and-moon > & {
+      transform: rotateZ(-25deg);
+      transition-duration: 0.15s;
+    }
+  }
+
+  .moon > circle {
+    transition: transform 0.25s cubic-bezier(0, 0, 0, 1);
+
+    [data-theme='dark'] .sun-and-moon & {
+      transition-delay: 0.25s;
+      transition-duration: 0.5s;
+    }
+  }
+}
+
+html [data-theme='dark'] {
+	background-color: #111;
+}
