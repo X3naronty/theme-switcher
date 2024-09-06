@@ -24,11 +24,15 @@ const theme = {
 	value: getColorPreference(),
 };
 
+reflectPreference();
+
 window.onload = () => {
   reflectPreference();
 
   document.querySelector('.theme-toggle').addEventListener('click', onClick);
 };
+
+
 
 const onClick = () => {
   theme.value = theme.value === 'light' ? 'dark' : 'light';

@@ -1,5 +1,5 @@
 html[data-theme='dark']{
-	background-color: #111;
+	background-color: #111  ;
 }
 
 .theme-toggle {
@@ -97,7 +97,7 @@ html[data-theme='dark']{
     transition: transform 0.25s cubic-bezier(0, 0, 0, 1);
 
     [data-theme='dark'] .sun-and-moon & {
-      transition-delay: 0.25s;
+      transition-delay: 0.15s;
       transition-duration: 0.5s;
     }
   }
@@ -105,4 +105,12 @@ html[data-theme='dark']{
 
 html [data-theme='dark'] {
 	background-color: #111;
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
